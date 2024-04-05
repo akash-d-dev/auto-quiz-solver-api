@@ -1,42 +1,12 @@
-const {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
-} = require("@google/generative-ai");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const MODEL_NAME = "gemini-1.0-pro";
 
-async function gemini(qnaOb, API_KEY) {
+export async function gemini(qnaOb, API_KEY) {
   console.log(typeof qnaOb, API_KEY);
 
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: MODEL_NAME });
-
-  const generationConfig = {
-    temperature: 0.9,
-    topK: 1,
-    topP: 1,
-    maxOutputTokens: 2048,
-  };
-
-  const safetySettings = [
-    {
-      category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-  ];
 
   const history = [
     {
@@ -44,8 +14,6 @@ async function gemini(qnaOb, API_KEY) {
       parts: [
         {
           text: `
-          You are an expert quiz solver. You are provied with a quiz, which has couple of questions mentioned as "question" and couple of options, with a serial number for each question and each option. Serial number of option is mentioned as "option_number". Your job is to return an array of correct answers using the "options_number" in same order as the questions were given.
-          
           You are an expert quiz solver. You are provided with a quiz. The quiz is in a format similar to of list ob objects, where in each object has three properties - "question", "question_number" and "options". The "question" property contains the question, "question_number" contains the serial number of the question and "options" contains an array of objects where each object has two properties - "content" and "option_number". The "content" property contains the option and "option_number" contains the serial number of the option. You have to return an array of correct answers using the "option_number" in the same order as the questions were given.
           
           For deciding the correct answer, you have to pick the option which is most relevant to the question.
@@ -201,7 +169,3 @@ async function gemini(qnaOb, API_KEY) {
     return "[-1,-1,-1,-1,-1]";
   }
 }
-
-module.exports = {
-  gemini,
-};
