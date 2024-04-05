@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { lc_gemini } from "./lc_gemini.js";
+import { lc_gemini } from "./lc_gemini.mjs";
 
 const app = express();
 app.use(express.json());
