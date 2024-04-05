@@ -1,7 +1,3 @@
-// import express from "express";
-// import cors from "cors";
-// import { lc_gemini } from "./lc_gemini.js";
-
 const express = require("express");
 const cors = require("cors");
 const { lc_gemini } = require("./lc_gemini.js");
@@ -10,6 +6,7 @@ const app = express();
 app.use(express.json());
 const port = 8000;
 
+// Add CORS middleware
 app.use(cors());
 
 app.get("/", (req, res) => {
