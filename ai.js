@@ -2,7 +2,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const MODEL_NAME = "gemini-1.0-pro";
 
-export async function gemini(qnaOb, API_KEY) {
+async function gemini(qnaOb, API_KEY) {
   console.log(typeof qnaOb, API_KEY);
 
   const genAI = new GoogleGenerativeAI(API_KEY);
@@ -168,3 +168,5 @@ export async function gemini(qnaOb, API_KEY) {
     return "[-1,-1,-1,-1,-1]";
   }
 }
+
+module.exports = { gemini };
