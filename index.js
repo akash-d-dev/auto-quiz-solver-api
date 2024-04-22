@@ -14,12 +14,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", async (req, res) => {
-  const { key } = req.headers;
+  const { key, model } = req.headers;
   const qna_dict = req.body;
   const qna_str = JSON.stringify(qna_dict).replace(/"/g, " ");
 
   try {
-    const result = await lc_gemini(qna_str, key);
+    const result = await lc_gemini(qna_str, key, model);
     res.json(result);
   } catch (error) {
     const result = [-1, -1, -1, -1, -1];
