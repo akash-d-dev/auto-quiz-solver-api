@@ -13,7 +13,10 @@ async function lc_gemini(qna, key, model = "gemini-1.0-pro") {
 
   const instructions = `You are an expert quiz solver. You are provided with a quiz {subject}. The quiz is in a format similar to of list objects, where in each object has three properties - "question", "question_number" and "options". The "question" property contains the question, "question_number" contains the serial number of the question and "options" contains an array of objects where each object has two properties - "content" and "option_number". The "content" property contains the option and "option_number" contains the serial number of the option. You have to pick the correct answers using the "option_number" in the same order as the questions were given.
 
-  Your response should be a list of comma separated values, eg: "0,3,2,1,1"`;
+  Your response should be a list of comma separated values, eg: "0,3,2,1,1"
+  
+  NOTE: Your correct option number of corect answer cannot be greater than 3. So you list of comma separated values should be in the range of 0-3. 
+  `;
 
   const chain = RunnableSequence.from([
     PromptTemplate.fromTemplate("Solve this quiz - \n {quiz}.\n{format_instructions}"),
