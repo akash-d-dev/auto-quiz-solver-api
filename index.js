@@ -3,10 +3,11 @@ const cors = require("cors");
 const { lc_gemini } = require("./lc_gemini.js");
 
 const app = express();
-app.use(express.json());
+// Add morgan middleware to log HTTP requests
+const morgan = require("morgan");
 const port = 8000;
-
-// Add CORS middleware
+app.use(express.json());
+app.use(morgan("dev"));
 app.use(cors());
 
 app.get("/", (req, res) => {
@@ -20,8 +21,10 @@ app.post("/", async (req, res) => {
 
   try {
     const result = await lc_gemini(qna_str, key, model);
+    console.log(result);
     res.json(result);
   } catch (error) {
+    console.log(error);
     const result = [-1, -1, -1, -1, -1];
     res.json(result);
   }
