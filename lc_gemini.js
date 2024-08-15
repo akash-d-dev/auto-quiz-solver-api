@@ -5,7 +5,9 @@
 
 const { ChatGoogleGenerativeAI } = require("@langchain/google-genai");
 const { PromptTemplate } = require("@langchain/core/prompts");
-const { CommaSeparatedListOutputParser } = require("@langchain/core/output_parsers");
+const {
+  CommaSeparatedListOutputParser,
+} = require("@langchain/core/output_parsers");
 const { RunnableSequence } = require("@langchain/core/runnables");
 
 async function lc_gemini(qna, key, model = "gemini-1.0-pro") {
@@ -15,11 +17,13 @@ async function lc_gemini(qna, key, model = "gemini-1.0-pro") {
 
   Your response should be a list of comma separated values, eg: "0,3,2,1,1"
   
-  NOTE: Your correct option number of corect answer cannot be greater than 3. So you list of comma separated values should be in the range of 0-3. 
+  NOTE: Your correct option number of corect answer cannot be greater than 3. So your list of comma separated values should be in the range of 0-3. 
   `;
 
   const chain = RunnableSequence.from([
-    PromptTemplate.fromTemplate("Solve this quiz - \n {quiz}.\n{format_instructions}"),
+    PromptTemplate.fromTemplate(
+      "Solve this quiz - \n {quiz}.\n{format_instructions}"
+    ),
     new ChatGoogleGenerativeAI({
       modelName: model,
       temperature: 0,
