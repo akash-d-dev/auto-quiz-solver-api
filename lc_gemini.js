@@ -17,7 +17,7 @@ async function lc_gemini(qna, key, model = "gemini-1.0-pro") {
 
   Your response should be a list of comma separated values, eg: "0,3,2,1,1"
   
-  NOTE: Your correct option number of corect answer cannot be greater than 3. So your list of comma separated values should be in the range of 0-3. 
+  NOTE: Your correct option number of corect answer cannot be greater than 3. So your list of comma separated values should be in the range of 0-3. Also there will be 5 questions in the quiz, so your response should contain EXACTLY 5 comma separated values.
   `;
 
   const chain = RunnableSequence.from([
