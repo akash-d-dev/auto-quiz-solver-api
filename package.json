@@ -8,7 +8,9 @@
     "typescript": "^4.7.3"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "@langchain/google-genai": "^0.0.10",
+    "@langchain/openai": "^0.4.4",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "morgan": "^1.10.0",
