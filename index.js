@@ -3,7 +3,6 @@ const cors = require('cors');
 const { lc_gemini } = require('./lc_gemini.js');
 
 const app = express();
-// Add morgan middleware to log HTTP requests
 const morgan = require('morgan');
 const { lc_openai } = require('./lc_openai.js');
 const port = 8000;
@@ -16,13 +15,12 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', async (req, res) => {
-  const { key, model, modelType } = req.headers;
+  const { key, model, model_type } = req.headers;
   const qna_dict = req.body;
   const qna_str = JSON.stringify(qna_dict).replace(/"/g, ' ');
-
   try {
     const result =
-      modelType === 'gpt'
+      model_type === 'gpt'
         ? await lc_openai(qna_str, key, model)
         : await lc_gemini(qna_str, key, model);
     console.log(result);
