@@ -8,7 +8,7 @@ const { lc_openai } = require('./lc_openai.js');
 const port = 8000;
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors('*'));
 
 app.get('/', (req, res) => {
   res.json({ message: 'Server Running' });
@@ -16,6 +16,9 @@ app.get('/', (req, res) => {
 
 app.post('/', async (req, res) => {
   const { key, model, model_type } = req.headers;
+
+  console.log(key, model, model_type);
+
   const qna_dict = req.body;
   const qna_str = JSON.stringify(qna_dict).replace(/"/g, ' ');
   try {

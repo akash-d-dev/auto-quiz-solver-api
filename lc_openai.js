@@ -6,6 +6,10 @@ const {
 const { RunnableSequence } = require('@langchain/core/runnables');
 
 async function lc_openai(qna, key, model = 'gpt-3.5-turbo') {
+  console.log('******************');
+  console.log('Using OpenAI API');
+  console.log('******************');
+
   const parser = new CommaSeparatedListOutputParser();
 
   const instructions = `You are an expert quiz solver. You are provided with a quiz. The quiz is in a format similar to list objects, where each object has three properties - "question", "question_number" and "options". The "question" property contains the question to be answered, "question_number" contains the serial number of the question and "options" contains an array of objects where each object has two properties - "content" and "option_number". The "content" property contains the option for the question and "option_number" contains the serial number of the option. You have to pick the correct answers using the "option_number" in the same order as the questions were given.
