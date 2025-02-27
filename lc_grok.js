@@ -5,7 +5,7 @@ const {
 } = require('@langchain/core/output_parsers');
 const { RunnableSequence } = require('@langchain/core/runnables');
 
-async function lc_grok(qna, key, model = 'mixtral-8x7b-32768') {
+async function lc_grok(qna, key, model = 'grok-2-latest') {
   console.log('******************');
   console.log('Using Grok API');
   console.log('******************');
