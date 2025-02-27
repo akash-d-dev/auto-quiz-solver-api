@@ -22,10 +22,19 @@ app.post('/', async (req, res) => {
   const qna_dict = req.body;
   const qna_str = JSON.stringify(qna_dict).replace(/"/g, ' ');
   try {
-    const result =
-      model_type === 'gpt'
-        ? await lc_openai(qna_str, key, model)
-        : await lc_gemini(qna_str, key, model);
+    let result;
+    switch (model_type) {
+      case 'gpt':
+      result = await lc_openai(qna_str, key, model);
+      break;
+      case 'grok':
+      result = await lc_grok(qna_str, key, model);
+      break;
+      case 'gemini':
+      default:
+      result = await lc_gemini(qna_str, key, model);
+      break;
+    }
     console.log(result);
     res.json(result);
   } catch (error) {
