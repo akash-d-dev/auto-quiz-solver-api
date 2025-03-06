@@ -1,6 +1,6 @@
-const { lc_gemini } = require('./lc_gemini.js');
-const { lc_openai } = require('./lc_openai.js');
-const { lc_grok } = require('./lc_grok.js');
+const { lc_gemini } = require('./lc_models/lc_gemini.js');
+const { lc_openai } = require('./lc_models/lc_openai.js');
+const { lc_grok } = require('./lc_models/lc_grok.js');
 
 const port = 8000;
 const express = require('express');
