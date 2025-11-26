@@ -6,7 +6,7 @@ const {
 const { RunnableSequence } = require('@langchain/core/runnables')
 const { instructions } = require('./constants')
 
-async function lc_grok(qna, key, model = 'grok-2-latest') {
+async function lc_grok(qna, key, model = 'grok-3-latest') {
   console.log('******************')
   console.log('Using Grok API')
   console.log('******************')

@@ -6,7 +6,7 @@ const {
 const { RunnableSequence } = require('@langchain/core/runnables')
 const { instructions } = require('./constants')
 
-async function lc_openai(qna, key, model = 'gpt-3.5-turbo') {
+async function lc_openai(qna, key, model = 'chatgpt-4o-latest') {
   console.log('******************')
   console.log('Using OpenAI API')
   console.log('******************')
