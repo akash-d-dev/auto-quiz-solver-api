@@ -13,13 +13,16 @@ async function lc_openai(qna, key, model = 'gpt-4o') {
 
   const parser = new CommaSeparatedListOutputParser()
 
+  let temperature = 0;
+  model.includes('5') ? temperature = 1 : temperature = 0;
+
   const chain = RunnableSequence.from([
     PromptTemplate.fromTemplate(
       'Solve this quiz and return a list of correct options - \n {quiz}.\n{format_instructions}'
     ),
     new ChatOpenAI({
       modelName: model,
-      temperature: 0,
+      temperature: temperature,
       apiKey: key
     }),
     parser
