@@ -6,7 +6,7 @@ const {
 const { RunnableSequence } = require('@langchain/core/runnables')
 const { instructions } = require('./constants')
 
-async function lc_gemini(qna, key, model = 'gemini-2.5-flash-lite') {
+async function lc_gemini(qna, key, model = 'gemini-2.5-flash') {
   console.log('******************')
   console.log('Using Gemini API')
   console.log('******************')

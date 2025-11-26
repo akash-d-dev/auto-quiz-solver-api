@@ -38,11 +38,18 @@ app.post('/', async (req, res) => {
       break;
     }
     console.log(result);
-    res.json(result);
+    const response = {
+      result: result,
+      error: "null"
+    };
+    res.json(response);
   } catch (error) {
     console.log(error);
-    const result = [-1, -1, -1, -1, -1];
-    res.json(result);
+    const response = {
+      result: [-1, -1, -1, -1, -1],
+      error: error.message,
+    };
+    res.json(response);
   }
 });
 
