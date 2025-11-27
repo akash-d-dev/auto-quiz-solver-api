@@ -9,7 +9,7 @@ const app = express();
 const morgan = require('morgan');
 
 app.use(express.json());
-app.use(morgan('dev'));
+app.use(morgan('dev')); 
 app.use(cors());
 
 app.get('/', (req, res) => {
@@ -19,10 +19,17 @@ app.get('/', (req, res) => {
 app.post('/', async (req, res) => {
   const { key, model, model_type, quiz_url } = req.headers;
 
-  console.log(key, model, model_type, quiz_url);
+  // Mask the key: Replace first 50% with stars
+  const maskKey = (key) => {
+    if (!key) return null;
+    const halfLength = Math.ceil(key.length / 2);
+    return '*'.repeat(halfLength) + key.slice(halfLength);
+  };
+
+  console.log(maskKey(key), model, model_type, quiz_url);
 
   const qna_dict = req.body;
-  const qna_str = JSON.stringify(qna_dict).replace(/"/g, ' ');
+  const qna_str = JSON.stringify(qna_dict).replace(/\"/g, ' ');
   try {
     let result;
     switch (model_type) {
