@@ -17,9 +17,9 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', async (req, res) => {
-  const { key, model, model_type } = req.headers;
+  const { key, model, model_type, quiz_url } = req.headers;
 
-  console.log(key, model, model_type);
+  console.log(key, model, model_type, quiz_url);
 
   const qna_dict = req.body;
   const qna_str = JSON.stringify(qna_dict).replace(/"/g, ' ');
